@@ -1,0 +1,43 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "PlatformerCharacter2D",
+"language": "GDScript",
+"path": "res://addons/PlatformerCharacter2D/platformer_character_2d.gd"
+}, {
+"base": "PlatformerCharacter2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://demo/player.gd"
+} ]
+_global_script_class_icons={
+"PlatformerCharacter2D": "",
+"Player": ""
+}
+
+[application]
+
+config/name="PlatformerCharacter"
+run/main_scene="res://demo/world.tscn"
+config/icon="res://icon.png"
+
+[editor_plugins]
+
+enabled=PoolStringArray(  )
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

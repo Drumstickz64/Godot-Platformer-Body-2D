@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="QuadMesh" id=1]
+size = Vector2( 1600, 12 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 800, 6 )
+
+[node name="Ground" type="StaticBody2D"]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+mesh = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
