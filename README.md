@@ -1,3 +1,3 @@
-# 2D Platformer Controller for Godot
+# Base PlatformerCharacter2D for Godot
 
-A 2d platformer controller with variable jump, different jump and fall gravities, and acceleration and deceleration. All defined with intuitive distance and time variables tweakable from the inspector.
+A simple base platformer character 2D with movement, friction, jumping, and jump-cutting. acceleration and jump trajectories calculated using simple time and max-distance/max-speed values from exported to the editor
