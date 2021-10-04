@@ -5,20 +5,19 @@ extends PlatformerCharacter2D
 func _physics_process(delta: float) -> void:
 	var hdirection := _get_hinput()
 	
-	_apply_gravity(delta)
-	if Input.is_action_just_pressed("ui_up") and is_on_floor():
+	apply_gravity(delta)
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		jump()
-	elif Input.is_action_just_released("ui_up"):
+	elif Input.is_action_just_released("jump"):
 		cut_jump()
 	
 	if hdirection == 0:
-		_apply_friction(delta)
+		apply_friction(delta)
 	else:
-		_apply_movement(delta, hdirection)
+		apply_movement(delta, hdirection)
 	
-	var velocity_verlet := _get_velocity_verlet(delta)
-	velocity = move_and_slide(velocity_verlet, Vector2.UP, true)
+	velocity = move(delta, true)
 
 
 func _get_hinput() -> float:
-	return sign(Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"))
+	return sign(Input.get_action_strength("move_right") - Input.get_action_strength("move_left"))
