@@ -69,8 +69,7 @@ func cut_jump() -> void:
 
 func apply_gravity(delta: float) -> void:
 	gravity = gravity_jump if velocity.y < 0.0 else gravity_fall
-	var desired_velocity := Vector2(velocity.x, fall_max_speed)
-	velocity = velocity.move_toward(desired_velocity, gravity * delta)
+	velocity.y = move_toward(velocity.y, fall_max_speed, gravity * delta)
 
 
 func _on_land() -> void:
@@ -80,12 +79,11 @@ func _on_land() -> void:
 
 func apply_friction(delta: float) -> void:
 	var deceleration := run_friction if is_on_floor() else run_drag
-	velocity = velocity.move_toward(Vector2(0.0, velocity.y), deceleration * delta)
+	velocity.x = move_toward(velocity.x, 0, deceleration * delta)
 
 
 func apply_movement(delta: float, hdirection: float) -> void:
-	var desired_velocity := Vector2(run_max_speed * hdirection, velocity.y)
-	velocity = velocity.move_toward(desired_velocity, run_acceleration * delta)
+	velocity.x = move_toward(velocity.x, run_max_speed * hdirection, run_acceleration * delta)
 
 
 func _get_new_snap() -> Vector2:
