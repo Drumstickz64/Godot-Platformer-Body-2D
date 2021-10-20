@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://demo/zombie.gd" type="Script" id=1]
+
+[sub_resource type="CapsuleShape2D" id=1]
+height = 36.0
+
+[node name="Zombie" type="KinematicBody2D"]
+script = ExtResource( 1 )
+run_max_speed = 120.0
+run_time_to_max_speed = 0.2
+snap_vector_length = 32.0
+
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Pivot"]
+color = Color( 0.14902, 0.592157, 0.0823529, 1 )
+polygon = PoolVector2Array( -8, -32, 12, -32, 12, -20, 8, -20, 8, -16, -8, -16, -8, -20 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="Pivot"]
+color = Color( 0.239216, 0.239216, 0.239216, 1 )
+polygon = PoolVector2Array( 4, -28, 4, -28, 8, -28, 8, -24, 4, -24 )
+
+[node name="Polygon2D3" type="Polygon2D" parent="Pivot"]
+color = Color( 0.890196, 0.411765, 0.635294, 1 )
+polygon = PoolVector2Array( -8, -32, 0, -32, -8, -24 )
+
+[node name="Polygon2D4" type="Polygon2D" parent="Pivot"]
+color = Color( 0.501961, 0.376471, 0.0705882, 1 )
+polygon = PoolVector2Array( 8, -16, 8, 16, -8, 16, -8, -16 )
+
+[node name="Polygon2D5" type="Polygon2D" parent="Pivot"]
+color = Color( 0.14902, 0.592157, 0.0823529, 1 )
+polygon = PoolVector2Array( -4, 16, 4, 16, 4, 28, -4, 28 )
+
+[node name="Polygon2D6" type="Polygon2D" parent="Pivot"]
+color = Color( 0.14902, 0.592157, 0.0823529, 1 )
+polygon = PoolVector2Array( 8, -8, 8, 0, 20, 0, 20, -8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )

@@ -5,7 +5,9 @@
 [sub_resource type="CapsuleShape2D" id=1]
 height = 12.0
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=[
+"player",
+]]
 script = ExtResource( 2 )
 jump_time_to_peak = 0.4
 jump_time_to_fall = 0.32

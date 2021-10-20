@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=2]
 
 [sub_resource type="QuadMesh" id=1]
-size = Vector2( 1600, 12 )
+size = Vector2( 1600, 16 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 800, 6 )
+extents = Vector2( 800, 8 )
 
 [node name="Ground" type="StaticBody2D"]
 
