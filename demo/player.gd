@@ -1,5 +1,8 @@
 class_name Player
-extends PlatformerCharacter2D
+extends PlatformerBody2D
+
+
+export var stop_on_slopes := true
 
 
 func _physics_process(delta: float) -> void:
@@ -12,11 +15,16 @@ func _physics_process(delta: float) -> void:
 		cut_jump()
 	
 	if hdirection == 0:
-		apply_friction(delta)
+		apply_deceleration(delta)
 	else:
-		apply_movement(delta, hdirection)
+		apply_acceleration(delta, hdirection)
 	
-	velocity = move(delta, true)
+	velocity = move(delta, stop_on_slopes)
+
+
+# overriding get_deceleration to provide new deceleration
+func get_deceleration() -> float:
+	return 0.0 if Input.is_action_pressed("slide") else .get_deceleration()
 
 
 func _get_hinput() -> float:

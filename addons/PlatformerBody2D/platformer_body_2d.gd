@@ -1,4 +1,4 @@
-class_name PlatformerCharacter2D
+class_name PlatformerBody2D
 extends KinematicBody2D
 
 
@@ -68,22 +68,34 @@ func cut_jump() -> void:
 
 
 func apply_gravity(delta: float) -> void:
-	gravity = gravity_jump if velocity.y < 0.0 else gravity_fall
+	gravity = get_gravity()
 	velocity.y = move_toward(velocity.y, fall_max_speed, gravity * delta)
+
+
+func get_gravity() -> float:
+	return gravity_jump if velocity.y < 0.0 else gravity_fall
+
+
+func apply_deceleration(delta: float) -> void:
+	var deceleration := get_deceleration()
+	velocity.x = move_toward(velocity.x, 0, deceleration * delta)
+
+
+func get_deceleration() -> float:
+	return run_friction if is_on_floor() else run_drag
+
+
+func apply_acceleration(delta: float, hdirection: float) -> void:
+	velocity.x = move_toward(velocity.x, run_max_speed * hdirection, get_acceleration() * delta)
+
+
+func get_acceleration() -> float:
+	return run_acceleration
 
 
 func _on_land() -> void:
 	_is_jumping = false
 	snap = _get_new_snap()
-
-
-func apply_friction(delta: float) -> void:
-	var deceleration := run_friction if is_on_floor() else run_drag
-	velocity.x = move_toward(velocity.x, 0, deceleration * delta)
-
-
-func apply_movement(delta: float, hdirection: float) -> void:
-	velocity.x = move_toward(velocity.x, run_max_speed * hdirection, run_acceleration * delta)
 
 
 func _get_new_snap() -> Vector2:
