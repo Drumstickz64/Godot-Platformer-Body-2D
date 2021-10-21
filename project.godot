@@ -9,11 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "KinematicBody2D",
-"class": "PlatformerBody2D",
-"language": "GDScript",
-"path": "res://addons/PlatformerBody2D/platformer_body_2d.gd"
-}, {
 "base": "PlatformerBody2D",
 "class": "Player",
 "language": "GDScript",
@@ -25,7 +20,6 @@ _global_script_classes=[ {
 "path": "res://demo/zombie.gd"
 } ]
 _global_script_class_icons={
-"PlatformerBody2D": "",
 "Player": "",
 "Zombie": ""
 }
