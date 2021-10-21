@@ -8,11 +8,13 @@ A simple base platformer body 2D with acceleration, deceleration, jumping, and j
 - **Jump:** perform a jump.
 - **cut_jump:** cut the jump short.
 - **apply_gravity:** apply gravity.
-- **apply_acceleration** accelerate in a given direction.
-- **apply_deceleration:** slowly decelerate.
-- **get_acceleration:** allows for adding different types of acceleration.
-- **get_deceleration:** allows for adding different types of deceleration.
 - **get_gravity:** allows for adding different types of gravity.
+- **should_accelerate:** should the character accelerate
+- **apply_acceleration** accelerate in a given direction.
+- **get_acceleration:** allows for adding different types of acceleration.
+- **should_decelerate:** should the character decelerate
+- **apply_deceleration:** slowly decelerate.
+- **get_deceleration:** allows for adding different types of deceleration.
 
 ## Properties
 

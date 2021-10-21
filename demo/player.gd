@@ -14,9 +14,10 @@ func _physics_process(delta: float) -> void:
 	elif Input.is_action_just_released("jump"):
 		cut_jump()
 	
-	if hdirection == 0:
+	if should_decelerate(hdirection):
 		apply_deceleration(delta)
-	else:
+	
+	if should_accelerate(hdirection):
 		apply_acceleration(delta, hdirection)
 	
 	velocity = move(delta, stop_on_slopes)

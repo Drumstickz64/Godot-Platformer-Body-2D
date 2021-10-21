@@ -81,12 +81,20 @@ func apply_deceleration(delta: float) -> void:
 	velocity.x = move_toward(velocity.x, 0, deceleration * delta)
 
 
+func should_decelerate(hdirection: float) -> bool:
+	return hdirection != sign(velocity.x)
+
+
 func get_deceleration() -> float:
 	return run_friction if is_on_floor() else run_drag
 
 
 func apply_acceleration(delta: float, hdirection: float) -> void:
 	velocity.x = move_toward(velocity.x, run_max_speed * hdirection, get_acceleration() * delta)
+
+
+func should_accelerate(hdirection: float) -> bool:
+	return hdirection != 0
 
 
 func get_acceleration() -> float:
