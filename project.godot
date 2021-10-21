@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://demo/player.gd"
+}, {
+"base": "PlatformerBody2D",
+"class": "Zombie",
+"language": "GDScript",
+"path": "res://demo/zombie.gd"
 } ]
 _global_script_class_icons={
 "PlatformerBody2D": "",
-"Player": ""
+"Player": "",
+"Zombie": ""
 }
 
 [application]
