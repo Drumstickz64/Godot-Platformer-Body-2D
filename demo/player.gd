@@ -5,22 +5,13 @@ extends PlatformerBody2D
 export var stop_on_slopes := true
 
 
-func _physics_process(delta: float) -> void:
-	var hdirection := _get_hinput()
+func _physics_process(_delta: float) -> void:
+	direction = _get_hinput()
 	
-	apply_gravity(delta)
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		jump()
 	elif Input.is_action_just_released("jump"):
 		cut_jump()
-	
-	if should_decelerate(hdirection):
-		apply_deceleration(delta)
-	
-	if should_accelerate(hdirection):
-		apply_acceleration(delta, hdirection)
-	
-	velocity = move(delta, stop_on_slopes)
 
 
 # overriding get_deceleration to provide new deceleration
