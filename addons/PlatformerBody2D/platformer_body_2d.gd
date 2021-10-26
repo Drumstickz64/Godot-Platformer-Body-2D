@@ -93,7 +93,7 @@ func get_gravity() -> float:
 
 
 func set_move_direction(direction: float) -> void:
-	direction = clamp(direction, -1.0, 1.0)
+	move_direction = clamp(direction, -1.0, 1.0)
 
 
 func apply_deceleration(delta: float) -> void:
