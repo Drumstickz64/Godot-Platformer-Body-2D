@@ -9,5 +9,5 @@ onready var pivot: Node2D = $Pivot
 func _physics_process(_delta: float) -> void:
 	var dir_to_plr := global_position.direction_to(plr.position)
 	var hdir_to_plr := sign(dir_to_plr.x)
-	direction = hdir_to_plr
+	set_move_direction(hdir_to_plr)
 	pivot.scale.x = hdir_to_plr

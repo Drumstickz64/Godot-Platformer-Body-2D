@@ -6,7 +6,7 @@ export var stop_on_slopes := true
 
 
 func _physics_process(_delta: float) -> void:
-	direction = _get_hinput()
+	set_move_direction(_get_hinput())
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		jump()

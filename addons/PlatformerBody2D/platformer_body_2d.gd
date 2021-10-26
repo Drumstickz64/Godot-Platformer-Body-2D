@@ -5,12 +5,9 @@ extends KinematicBody2D
 const INFINITE_INIRTIA = false
 const MAX_SLIDES := 4
 
-var up_direction := Vector2.UP
-var down_direction := Vector2.DOWN
 
 export var stop_on_slope := false
 export(float, 0.0, 180.0) var max_floor_angle := 45.0
-
 # run export variables
 export var run_max_speed := 280.0
 export var run_time_to_max_speed := 0.1
@@ -22,7 +19,7 @@ export var jump_cut_height := 40.0
 export var jump_time_to_peak := 0.5
 export var jump_time_to_fall := 0.4
 export var fall_max_speed := 600.0
-export var snap_vector_length := 32.0
+export var snap_vector_length := 8.0
 
 # run variables
 onready var run_acceleration := run_max_speed / run_time_to_max_speed
@@ -36,9 +33,12 @@ onready var gravity_fall := 2*jump_max_height / pow(jump_time_to_fall, 2)
 onready var snap := get_snap()
 onready var floor_max_angle := deg2rad(max_floor_angle)
 
+var up_direction := Vector2.UP
+var down_direction := Vector2.DOWN
+var gravity_scale := 1.0
 var velocity := Vector2.ZERO
 var gravity := gravity_fall
-var direction := 0.0
+var move_direction := 0.0
 var _previous_velocity := Vector2.ZERO
 var _wants_to_jump := false
 
@@ -89,7 +89,11 @@ func apply_gravity(delta: float) -> void:
 
 
 func get_gravity() -> float:
-	return gravity_jump if velocity.y < 0.0 else gravity_fall
+	return gravity_jump if is_jumping() else gravity_fall
+
+
+func set_move_direction(direction: float) -> void:
+	direction = clamp(direction, -1.0, 1.0)
 
 
 func apply_deceleration(delta: float) -> void:
@@ -98,7 +102,7 @@ func apply_deceleration(delta: float) -> void:
 
 
 func should_decelerate() -> bool:
-	return not is_equal_approx(direction, clamp(velocity.x, -1.0, 1.0))
+	return not is_equal_approx(move_direction, clamp(velocity.x, -1.0, 1.0))
 
 
 func get_deceleration() -> float:
@@ -106,11 +110,11 @@ func get_deceleration() -> float:
 
 
 func apply_acceleration(delta: float) -> void:
-	velocity.x = move_toward(velocity.x, run_max_speed * direction, get_acceleration() * delta)
+	velocity.x = move_toward(velocity.x, run_max_speed * move_direction, get_acceleration() * delta)
 
 
 func should_accelerate() -> bool:
-	return not is_zero_approx(direction)
+	return not is_zero_approx(move_direction)
 
 
 func get_acceleration() -> float:
@@ -118,11 +122,11 @@ func get_acceleration() -> float:
 
 
 func is_idle() -> bool:
-	return is_on_floor() and is_zero_approx(direction)
+	return is_on_floor() and is_zero_approx(move_direction)
 
 
 func is_running() -> bool:
-	return is_on_floor() and not is_zero_approx(direction)
+	return is_on_floor() and not is_zero_approx(move_direction)
 
 
 func is_jumping() -> bool:
