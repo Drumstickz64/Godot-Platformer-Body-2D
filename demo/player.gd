@@ -2,9 +2,6 @@ class_name Player
 extends PlatformerBody2D
 
 
-export var stop_on_slopes := true
-
-
 func _physics_process(_delta: float) -> void:
 	set_move_direction(_get_hinput())
 	

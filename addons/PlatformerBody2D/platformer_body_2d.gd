@@ -84,7 +84,7 @@ func get_snap() -> Vector2:
 
 
 func apply_gravity(delta: float) -> void:
-	gravity = get_gravity()
+	gravity = get_gravity() * down_direction.y * gravity_scale
 	velocity.y = move_toward(velocity.y, fall_max_speed, gravity * delta)
 
 
