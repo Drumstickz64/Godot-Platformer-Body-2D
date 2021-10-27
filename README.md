@@ -2,30 +2,30 @@
 
 A simple base platformer body 2D with acceleration, deceleration, jumping, and jump-cutting. acceleration and jump trajectories calculated using simple time and max-distance/max-speed values exported to the editor.
 
+_Note: this node is designed with typical up and down directions in mind. which means gravity will always point vertical and movement will always be to the horizontal. so no standing on walls or going around planets. You can however, reverse gravity by setting `gravity_scale` to a negative number._
+
 ## API
 
 ### Export Variables
 
-- stop_on_slope
-- max_floor_angle
-- run_max_speed
-- run_time_to_max_speed
-- run_time_to_stop
-- run_time_to_stop_air
-- jump_max_height
-- jump_cut_height
-- jump_time_to_peak
-- jump_time_to_fall
-- fall_max_speed
-- snap_vector_length
+- `stop_on_slope`
+- `max_floor_angle`
+- `run_max_speed`
+- `run_time_to_max_speed`
+- `run_time_to_stop`
+- `run_time_to_stop_air`
+- `jump_max_height`
+- `jump_cut_height`
+- `jump_time_to_peak`
+- `jump_time_to_fall`
+- `fall_max_speed`
+- `snap_vector_length`
 
 ### Properties
 
-- up_direction
-- down_direction
-- move_direction
-- velocity
-- gravity scale
+- `move_direction`
+- `velocity`
+- `gravity_scale`
 
 ### Jumping and Gravity
 

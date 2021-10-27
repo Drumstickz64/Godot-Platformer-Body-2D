@@ -18,7 +18,7 @@ export var jump_max_height := 120.0
 export var jump_cut_height := 40.0
 export var jump_time_to_peak := 0.5
 export var jump_time_to_fall := 0.4
-export var fall_max_speed := 600.0
+export var fall_max_speed := 400.0
 export var snap_vector_length := 8.0
 
 # run variables
@@ -33,11 +33,9 @@ onready var gravity_fall := 2*jump_max_height / pow(jump_time_to_fall, 2)
 onready var snap := get_snap()
 onready var floor_max_angle := deg2rad(max_floor_angle)
 
-var up_direction := Vector2.UP
-var down_direction := Vector2.DOWN
 var gravity_scale := 1.0
 var velocity := Vector2.ZERO
-var gravity := gravity_fall
+var gravity := 0.0
 var move_direction := 0.0
 var _previous_velocity := Vector2.ZERO
 var _wants_to_jump := false
@@ -65,7 +63,7 @@ func _physics_process(delta: float) -> void:
 	_previous_velocity = velocity
 	var velocity_verlet := velocity + acceleration * 0.5 * delta
 	
-	velocity = move_and_slide_with_snap(velocity, snap, up_direction,
+	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP,
 			stop_on_slope, MAX_SLIDES, floor_max_angle, INFINITE_INIRTIA)
 
 
@@ -80,11 +78,11 @@ func cut_jump() -> void:
 
 
 func get_snap() -> Vector2:
-	return down_direction * snap_vector_length if not _wants_to_jump else Vector2.ZERO
+	return Vector2.DOWN * snap_vector_length if not _wants_to_jump else Vector2.ZERO
 
 
 func apply_gravity(delta: float) -> void:
-	gravity = get_gravity() * down_direction.y * gravity_scale
+	gravity = get_gravity() * gravity_scale
 	velocity.y = move_toward(velocity.y, fall_max_speed, gravity * delta)
 
 
