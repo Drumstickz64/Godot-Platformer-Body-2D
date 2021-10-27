@@ -35,7 +35,6 @@ onready var floor_max_angle := deg2rad(max_floor_angle)
 
 var gravity_scale := 1.0
 var velocity := Vector2.ZERO
-var gravity := 0.0
 var move_direction := 0.0
 var _previous_velocity := Vector2.ZERO
 var _wants_to_jump := false
@@ -82,8 +81,9 @@ func get_snap() -> Vector2:
 
 
 func apply_gravity(delta: float) -> void:
-	gravity = get_gravity()
-	velocity.y = move_toward(velocity.y, fall_max_speed * sign(gravity_scale), gravity * abs(gravity_scale) * delta)
+	get_gravity()
+	velocity.y += get_gravity() * gravity_scale * delta
+	velocity.y = clamp(velocity.y, -fall_max_speed, fall_max_speed)
 
 
 func get_gravity() -> float:
