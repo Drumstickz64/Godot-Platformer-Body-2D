@@ -18,7 +18,7 @@ export var jump_max_height := 120.0
 export var jump_cut_height := 40.0
 export var jump_time_to_peak := 0.5
 export var jump_time_to_fall := 0.4
-export var fall_max_speed := 400.0
+export var fall_max_speed := 600.0
 export var snap_vector_length := 8.0
 
 # run variables
@@ -82,8 +82,8 @@ func get_snap() -> Vector2:
 
 
 func apply_gravity(delta: float) -> void:
-	gravity = get_gravity() * gravity_scale
-	velocity.y = move_toward(velocity.y, fall_max_speed, gravity * delta)
+	gravity = get_gravity()
+	velocity.y = move_toward(velocity.y, fall_max_speed * sign(gravity_scale), gravity * abs(gravity_scale) * delta)
 
 
 func get_gravity() -> float:
