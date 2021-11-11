@@ -9,9 +9,11 @@
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 192, 568 )
+acceleration_curve = null
 
 [node name="Zombie" parent="." instance=ExtResource( 4 )]
 position = Vector2( 8, 560 )
+acceleration_curve = null
 
 [node name="Ground" parent="." instance=ExtResource( 1 )]
 position = Vector2( 568, 592 )
